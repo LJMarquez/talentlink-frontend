@@ -1,0 +1,276 @@
+---
+import FormLayout from "../../components/formLayout.astro";
+import FormLabel from "../../components/FormLabel.astro";
+import SelectForm from "../../components/selectForm.astro";
+import RadioForm from "../../components/RadioForm.astro";
+import TextareaForm from "../../components/TextareaForm.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+import baseURL from "../../baseURL";
+import type { string } from "astro:schema";
+
+const { job }: { job: Job } = Astro.props;
+
+console.log("Job Prop:", job); // Debugging line to log the job object
+// Define the Job interface
+interface Job {
+  _id: string;
+  jobName: string;
+}
+
+interface UserData {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  school: string;
+  graduationDate: string;
+}
+
+let userData: UserData = {
+  firstName: "",
+  lastName: "",
+  phone: "",
+  email: "",
+  school: "",
+  graduationDate: "",
+};
+
+const api = baseURL();
+let jobs: Job[] = [];
+const response = await api.get("/find/TalentLinkDB/published_jobs");
+jobs = response.data; // Store the list of jobs
+
+// Extract jobName and jobId
+let jobNames = jobs.map((job: Job) => ({
+  jobId: job._id,
+  jobName: job.jobName,
+}));
+
+// Get the last part of the URL
+const pathSegments = Astro.url.pathname.split("/");
+const lastPart = pathSegments[pathSegments.length - 1]; // Get the last segment (jobId)
+console.log("Last part of the URL:", lastPart);
+
+// Find the jobName that matches the jobId
+let jobName: string | undefined;
+
+jobNames.forEach((job) => {
+  if (job.jobId === lastPart) {
+    jobName = job.jobName; // Store the jobName
+  }
+});
+
+console.log("Matched jobName:", jobName);
+export async function getStaticPaths() {
+  const api = baseURL();
+  let jobs: Job[] = [];
+
+  try {
+    const response = await api.get("/find/TalentLinkDB/published_jobs");
+    jobs = response.data; // Store the list of jobs
+  } catch (error) {
+    console.error("Error fetching jobs:", error);
+  }
+
+  // Return the paths and include jobName
+  return jobs.map((job: Job) => ({
+    params: {
+      jobId: job._id.toString(),
+      jobName: job.jobName,
+    },
+  }));
+}
+---
+
+<NavBar />
+
+<form id="apply-form" name={lastPart} action="/submit" method="POST">
+  <slot />
+
+  <FormLayout formTitle={jobName ?? "Default Job Name"}>
+    <!-- Pass job.jobName as formTitle -->
+
+    <!-- FormLabel Components -->
+    <FormLabel
+      labelTitle="Name"
+      inputValue={userData.firstName}
+      labelFor="phone"
+      labelType="text"
+      id="first-name"
+      name="firstName"
+    />
+
+    <FormLabel
+      labelTitle="Last Name"
+      inputValue={userData.lastName}
+      labelFor="last-name"
+      labelType="text"
+      id="last-name"
+      name="lastName"
+    />
+    <FormLabel
+      labelTitle="Phone Number"
+      inputValue={userData.phone}
+      labelFor="phone"
+      labelType="tel"
+      id="phone"
+      name="phone"
+    />
+    <FormLabel
+      labelTitle="Email Address"
+      inputValue={userData.email}
+      labelFor="email"
+      labelType="email"
+      id="email"
+      name="email"
+    />
+    <FormLabel
+      labelTitle="Unversity Name"
+      inputValue={userData.school}
+      labelFor="school"
+      labelType="text"
+      id="school"
+      name="school"
+    />
+
+    <FormLabel
+      labelTitle="Graduation Date"
+      inputValue={userData.graduationDate}
+      labelFor="graduation-date"
+      labelType="date"
+      id="graduation-date"
+      name="graduationDate"
+    />
+    <!-- SelectForm Components -->
+    <SelectForm
+      selectId="languages"
+      selectName="languages"
+      label="Foreign Language?"
+      disabledOption="Foreign Languages"
+      options={["None", "Other"]}
+    />
+
+    <RadioForm
+      groupLabel="Are you legally authorized to work in the United States?"
+      groupName="workAuthorization"
+      options={[
+        { label: "Yes", value: "Yes" },
+        { label: "No", value: "No" },
+      ]}
+    />
+
+    <RadioForm
+      groupLabel="What is your experience level?"
+      groupName="experienceLevel"
+      options={[
+        { label: "Beginner", value: "Beginner" },
+        { label: "Intermediate", value: "Intermediate" },
+        { label: "Advanced", value: "Advanced" },
+      ]}
+    />
+    <TextareaForm
+      label="Tell us about yourself, why do you qualify for this job?"
+      name="aboutMe"
+      placeholder="Write something here..."
+      id="aboutMe"
+      rows={5}
+      required={true}
+    />
+
+    <TextareaForm
+      label="Additional Comments"
+      name="comments"
+      placeholder="Any extra information?"
+      id="comments"
+      rows={3}
+    />
+
+    <button class="submit-button" type="submit">Submit Application</button>
+  </FormLayout>
+</form>
+<Footer />
+
+<script>
+  import baseURL from "../../baseURL";
+  // import ApplicantDetails from "../ApplicantDetails.astro";
+  document.addEventListener("DOMContentLoaded", async () => {
+    const form = document.getElementById(
+      "apply-form"
+    ) as HTMLFormElement | null;
+    const userId = localStorage.getItem("currentUserId");
+    const api = baseURL();
+
+    if (userId) {
+      console.log("User ID:", userId);
+      try {
+        const response = await api.get(`/retrieve-user/TalentLinkDB/users/${userId}`);
+        if (response.status === 200) {
+          const data = response.data;
+          console.log("User Data:", data);
+          const nameInput = document.getElementById(
+            "first-name"
+          ) as HTMLInputElement;
+          if (nameInput) {
+            nameInput.value = data.firstName;
+          }
+          const lastNameInput = document.getElementById("last-name") as HTMLInputElement;
+          if (lastNameInput) {
+            lastNameInput.value = data.lastName;
+          }
+          const phoneInput = document.getElementById("phone") as HTMLInputElement;
+          if (phoneInput) {
+            // phoneInput.value = data.phone;
+          }
+          const emailInput = document.getElementById("email") as HTMLInputElement;
+          if (emailInput) {
+            emailInput.value = data.email;
+          }
+          const schoolInput = document.getElementById("school") as HTMLInputElement;
+          if (schoolInput) {
+            schoolInput.value = data.school;
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+
+    if (form) {
+      const jobId = form.name;
+      console.log("Job ID:", jobId);
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent actual form submission for testing
+        const formData = new FormData(form);
+        const userApplication = Object.fromEntries(formData.entries());
+        userApplication.jobId = jobId;
+        if (userId) {
+          userApplication.userId = userId;
+        }
+        console.log("User Application:", userApplication);
+
+        const api = baseURL();
+        const postApplication = async () => {
+          try {
+            const response = await api.post(
+              "/user-apply/TalentLinkDB/users",
+              userApplication
+            );
+            if (response.status === 201) {
+              console.log("User created successfully!");
+              window.location.href = "/Profile";
+            }
+          } catch (error) {
+            console.error("Error fetching jobs:", error);
+            if (error instanceof Error) {
+              if (error.message.includes("409")) {
+                alert(`Already applied to this job!`);
+              }
+            }
+          }
+        };
+        postApplication();
+      });
+    }
+  });
+</script>

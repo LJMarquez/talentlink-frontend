@@ -1,0 +1,51 @@
+---
+import logo from "../../public/assets/talentlinklogo.svg";
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description = "Leo change this to sound cool frfr ",
+  image = "/images",
+} = Astro.props;
+//Leo put the image of the logo in here as default skkibidi
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:image" content={image} />
+    <title>{title}</title>
+    <link rel="icon" href={logo.src} />
+  </head>
+  <body class="min-h-screen">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* h1 {
+    font-size: 2.5rem;
+    font-weight: bolder;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: bolder;
+  } */
+</style>
+
+<script src="https://kit.fontawesome.com/6e0ca69a51.js" crossorigin="anonymous"
+></script>

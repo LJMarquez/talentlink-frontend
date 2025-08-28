@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import ProfileHeader from "../components/ProfileHeader.astro";
+import AppliedJobs from "../components/AppliedJobs";
+import UserInfo from "../components/UserInfo";
+import Notifications from "../components/Notifications";
+import PublishedJobs from "../components/PublishedJobs";
+import PendingJobs from "../components/PendingJobs";
+---
+
+<Layout title="Profile">
+  <NavBar />
+  <main class="profile-container">
+    <ProfileHeader />
+    <div class="profile-content">
+      <UserInfo client:load />
+      <div class="jobs-section">
+        <AppliedJobs client:load />
+        <!-- incorrect hook usage? -->
+        <PublishedJobs client:load />
+      </div>
+    </div>
+    <!-- incorrect hook usage? -->
+    <PendingJobs client:load />
+    <Notifications client:load />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .profile-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .profile-content {
+      grid-template-columns: 1fr 1.5fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .profile-content {
+      grid-template-columns: 1fr;
+    }
+    .profile-container {
+      padding: 1rem;
+    }
+  }
+</style>
+
+<script>
+  if (localStorage.getItem("loggedIn") !== "true") {
+    alert("You need to be logged in to view this page");
+    location.href = `/${localStorage.getItem("previousPage")}`;
+  }
+</script>

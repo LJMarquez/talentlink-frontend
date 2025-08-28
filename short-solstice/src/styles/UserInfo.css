@@ -1,0 +1,45 @@
+.user-info-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-info-card h2 {
+  color: #111827;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-item label {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.info-item p {
+  color: #111827;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .user-info-card {
+    padding: 1rem;
+  }
+
+  .info-grid {
+    gap: 0.75rem;
+  }
+}
+

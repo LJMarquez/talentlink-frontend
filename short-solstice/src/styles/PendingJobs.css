@@ -1,0 +1,81 @@
+.pending-jobs {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.pending-jobs h2 {
+  color: #111827;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.job-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 1rem;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.job-header h3 {
+  color: #0971e9;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.status {
+  background-color: #FEF3C7;
+  color: #92400E;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+}
+
+.job-details {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.company {
+  color: #111827;
+  font-weight: 500;
+}
+
+.location, .date {
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .pending-jobs {
+    margin-top: 1rem;
+  }
+
+  .job-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+  }
+}
+

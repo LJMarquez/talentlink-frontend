@@ -1,0 +1,130 @@
+#job-info-panel {
+  width: 55%;
+  margin-bottom: 3vw;
+  margin-right: 4vw;
+  border-radius: 1rem;
+  border: 1px solid rgba(211, 211, 211, 0.318);
+  overflow: hidden;
+  max-height: 70vh;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.247);
+}
+
+#job-details {
+  overflow-y: scroll;
+  height: 100%;
+  padding-bottom: 20vh;
+  div {
+    h1 {
+      font-size: 1.5rem;
+      margin: 1vw;
+      margin-left: 2vw;
+      font-weight: 500;
+    }
+  }
+}
+
+#job-details::-webkit-scrollbar {
+  width: 8px;
+}
+
+#job-details::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#job-details::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+#job-details::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+.job-info-section {
+  margin: 1vw;
+  margin-left: 2vw;
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 1vh;
+    font-weight: 400;
+  }
+  p {
+    background-color: lightgray;
+    padding: 0.3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 0.4rem;
+    width: fit-content;
+  }
+}
+
+#no-job-selected {
+  text-align: center;
+  font-size: 1rem;
+  padding: 1vw;
+}
+
+#button-wrapper {
+  margin-top: 8vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button {
+  color: white;
+  border: 3px solid rgb(71, 71, 71);
+  border-radius: 0.6rem;
+  font-weight: 500;
+  padding: 0.4rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  font-size: 1rem;
+}
+
+.approve {
+  background-color: #0971e9;
+  transition: all 0.3s ease;
+}
+.approve:hover {
+  background-color: #1756ad;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reject {
+  background-color: orangered;
+  transition: all 0.3s ease;
+}
+.reject:hover {
+  background-color: rgb(189, 55, 7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  #job-info-panel {
+    width: 90%;
+    margin-right: 0;
+    overflow-y: scroll;
+  }
+  #job-info-panel::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #job-info-panel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+
+  #job-info-panel::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+
+  #job-info-panel::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+  }
+}

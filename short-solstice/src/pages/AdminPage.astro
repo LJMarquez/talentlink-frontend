@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import AdminPageComponent from "../components/AdminPageComponent.jsx";
+---
+
+<Layout title="Admin Page">
+  <NavBar />
+  <AdminPageComponent client:load />
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5vw;
+  }
+</style>

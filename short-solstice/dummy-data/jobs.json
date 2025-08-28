@@ -1,0 +1,185 @@
+[
+  {
+    "jobName": "Software Engineer",
+    "jobType": "Full-time",
+    "salaryRange": { "minSalary": 80000, "maxSalary": 120000 },
+    "location": "Remote",
+    "experienceLevel": "Mid-level",
+    "qualifications": [
+      "Bachelor's Degree in Computer Science",
+      "3+ years of experience in software development"
+    ],
+    "skills": ["JavaScript", "React", "Node.js", "MongoDB"],
+    "responsibilities": [
+      "Develop and maintain web applications",
+      "Collaborate with cross-functional teams",
+      "Write clean, maintainable code"
+    ],
+    "companyName": "Innovatech Solutions",
+    "companyDescription": "A forward-thinking company specializing in cutting-edge software solutions.",
+    "website": "https://innovatechsolutions.com",
+    "companyEmail": "hr@innovatechsolutions.com",
+    "companyPhoneNumber": "555-123-4567",
+    "postedDate": "12-20-2024",
+    "applicationDeadline": "01-15-2025",
+    "employmentBenefits": ["Health insurance", "401(k) match", "Remote work stipend"],
+    "workSchedule": "Flexible",
+    "tags": ["remote", "javascript", "developer", "technology"]
+  },
+  {
+    "jobName": "Graphic Designer",
+    "jobType": "Part-time",
+    "salaryRange": { "minSalary": 30000, "maxSalary": 45000 },
+    "location": "New York, NY",
+    "experienceLevel": "Entry-level",
+    "qualifications": [
+      "Portfolio of graphic design work",
+      "Proficiency in Adobe Creative Suite"
+    ],
+    "skills": ["Adobe Photoshop", "Illustrator", "Typography"],
+    "responsibilities": [
+      "Design digital and print materials",
+      "Collaborate with the marketing team",
+      "Maintain brand consistency"
+    ],
+    "companyName": "Creative Visions Agency",
+    "companyDescription": "A boutique agency focused on bringing creative ideas to life.",
+    "website": "https://creativevisionsagency.com",
+    "companyEmail": "jobs@creativevisionsagency.com",
+    "companyPhoneNumber": "555-234-5678",
+    "postedDate": "12-18-2024",
+    "applicationDeadline": "01-05-2025",
+    "employmentBenefits": ["Paid time off", "Professional development opportunities"],
+    "workSchedule": "Monday-Wednesday, 9 AM to 1 PM",
+    "tags": ["onsite", "design", "creative", "marketing"]
+  },
+  {
+    "jobName": "Customer Support Specialist",
+    "jobType": "Contract",
+    "salaryRange": { "minSalary": 20, "maxSalary": 25 },
+    "location": "Austin, TX",
+    "experienceLevel": "Entry-level",
+    "qualifications": ["High School Diploma", "Excellent communication skills"],
+    "skills": ["Customer service", "Problem-solving", "CRM tools"],
+    "responsibilities": [
+      "Assist customers via email and phone",
+      "Resolve product-related inquiries",
+      "Document customer interactions"
+    ],
+    "companyName": "SupportEase Solutions",
+    "companyDescription": "Providing seamless customer support for businesses worldwide.",
+    "website": "https://supporteasesolutions.com",
+    "companyEmail": "careers@supporteasesolutions.com",
+    "companyPhoneNumber": "555-345-6789",
+    "postedDate": "12-19-2024",
+    "applicationDeadline": "01-10-2025",
+    "employmentBenefits": ["Work-from-home option", "Flexible hours"],
+    "workSchedule": "Evenings, 5 PM to 10 PM",
+    "tags": ["contract", "customer service", "remote", "support"]
+  },
+  {
+    "jobName": "Data Analyst",
+    "jobType": "Full-time",
+    "salaryRange": { "minSalary": 70000, "maxSalary": 90000 },
+    "location": "San Francisco, CA",
+    "experienceLevel": "Mid-level",
+    "qualifications": [
+      "Bachelor's Degree in Statistics or related field",
+      "Proficiency in SQL and Excel"
+    ],
+    "skills": ["SQL", "Data Visualization", "Python"],
+    "responsibilities": [
+      "Analyze financial data",
+      "Create reports for stakeholders",
+      "Ensure data accuracy and integrity"
+    ],
+    "companyName": "DataStream Analytics",
+    "companyDescription": "A leading provider of actionable business insights through data.",
+    "website": "https://datastreamanalytics.com",
+    "companyEmail": "jobs@datastreamanalytics.com",
+    "companyPhoneNumber": "555-456-7890",
+    "postedDate": "12-22-2024",
+    "applicationDeadline": "01-20-2025",
+    "employmentBenefits": ["Health insurance", "401(k)", "Onsite gym"],
+    "workSchedule": "Monday-Friday, 9 AM to 5 PM",
+    "tags": ["data", "finance", "analytics", "technology"]
+  },
+  {
+    "jobName": "Marketing Coordinator",
+    "jobType": "Full-time",
+    "salaryRange": { "minSalary": 50000, "maxSalary": 65000 },
+    "location": "Chicago, IL",
+    "experienceLevel": "Entry-level",
+    "qualifications": [
+      "Bachelor's Degree in Marketing or Business",
+      "Excellent communication skills"
+    ],
+    "skills": ["Social Media", "Content Creation", "SEO"],
+    "responsibilities": [
+      "Coordinate marketing campaigns",
+      "Monitor social media platforms",
+      "Analyze campaign performance"
+    ],
+    "companyName": "Bright Horizon Marketing",
+    "companyDescription": "A marketing agency helping brands reach new heights.",
+    "website": "https://brighthorizonmarketing.com",
+    "companyEmail": "careers@brighthorizonmarketing.com",
+    "companyPhoneNumber": "555-567-8901",
+    "postedDate": "12-20-2024",
+    "applicationDeadline": "01-10-2025",
+    "employmentBenefits": ["Health insurance", "Paid time off"],
+    "workSchedule": "Monday-Friday, 9 AM to 5 PM",
+    "tags": ["marketing", "entry-level", "creative", "business"]
+  },
+  {
+    "jobName": "Project Manager",
+    "jobType": "Full-time",
+    "salaryRange": { "minSalary": 85000, "maxSalary": 105000 },
+    "location": "Remote",
+    "experienceLevel": "Senior",
+    "qualifications": [
+      "Bachelor's Degree in Business Administration",
+      "5+ years of project management experience"
+    ],
+    "skills": ["Project Management", "Leadership", "Agile methodologies"],
+    "responsibilities": [
+      "Oversee project lifecycles",
+      "Manage team deliverables",
+      "Communicate with stakeholders"
+    ],
+    "companyName": "GlobalTech Management",
+    "companyDescription": "A premier provider of global project solutions.",
+    "website": "https://globaltechmanagement.com",
+    "companyEmail": "hr@globaltechmanagement.com",
+    "companyPhoneNumber": "555-678-9012",
+    "postedDate": "12-21-2024",
+    "applicationDeadline": "01-15-2025",
+    "employmentBenefits": ["401(k)", "Health and dental insurance", "Remote flexibility"],
+    "workSchedule": "Flexible",
+    "tags": ["remote", "project management", "senior", "technology"]
+  },
+  {
+    "jobName": "Content Writer",
+    "jobType": "Freelance",
+    "salaryRange": { "minSalary": 30, "maxSalary": 50 },
+    "location": "Remote",
+    "experienceLevel": "Entry-level",
+    "qualifications": ["Excellent writing skills", "Portfolio of writing samples"],
+    "skills": ["SEO", "Blog writing", "Editing"],
+    "responsibilities": [
+      "Write blog posts and articles",
+      "Research industry topics",
+      "Edit and proofread content"
+    ],
+    "companyName": "WordCraft Studio",
+    "companyDescription": "A platform connecting clients with talented freelance writers.",
+    "website": "https://wordcraftstudio.com",
+    "companyEmail": "hello@wordcraftstudio.com",
+    "companyPhoneNumber": "555-789-0123",
+    "postedDate": "12-23-2024",
+    "applicationDeadline": "01-30-2025",
+    "employmentBenefits": ["Flexible schedule", "Remote work"],
+    "workSchedule": "Freelance, as needed",
+    "tags": ["freelance", "content", "remote", "writing"]
+  }
+]

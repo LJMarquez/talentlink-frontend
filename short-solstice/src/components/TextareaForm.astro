@@ -1,0 +1,36 @@
+---
+interface Props {
+  label: string; // The label for the text area
+  name: string; // The name attribute for the text area
+  placeholder?: string; // Optional placeholder text
+  id: string; // The ID for the text area
+  rows?: number; // Number of rows for the text area (default: 4)
+  required?: boolean; // Whether the field is required
+}
+
+const {
+  label,
+  name,
+  placeholder,
+  id,
+  rows = 4,
+  required = false,
+} = Astro.props;
+---
+
+<div>
+  <label for={id}>{label}</label>
+  <textarea
+    id={id}
+    name={name}
+    placeholder={placeholder}
+    rows={rows}
+    required={required}
+  >
+  </textarea>
+</div>
+<style>
+  label {
+    font-weight: 500;
+  }
+</style>

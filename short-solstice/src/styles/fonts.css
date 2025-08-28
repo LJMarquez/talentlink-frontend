@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Avenir-Light';
+  src: url('/fonts/Avenir-Light.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Medium';
+  src: url('/fonts/Avenir-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Heavy';
+  src: url('/fonts/Avenir-Heavy.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Book';
+  src: url('/fonts/Avenir-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Roman';
+  src: url('/fonts/Avenir-Roman.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.avenir-light {
+  font-family: 'Avenir-Light', sans-serif;
+}
+
+.avenir-medium {
+  font-family: 'Avenir-Medium', sans-serif;
+}
+
+.avenir-heavy {
+  font-family: 'Avenir-Heavy', sans-serif;
+}
+
+.avenir-roman {
+  font-family: 'Avenir-Roman', sans-serif;
+}
+
+.avenir-book {
+  font-family: 'Avenir-Book', sans-serif;
+}

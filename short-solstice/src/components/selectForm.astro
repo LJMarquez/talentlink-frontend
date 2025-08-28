@@ -1,0 +1,65 @@
+---
+interface Props {
+  selectId: string; // The id for the select element
+  selectName: string; // The name attribute for the select element
+  label: string; // Label for the dropdown
+  disabledOption: string; // The placeholder option that is disabled
+  options: string[]; // Array of options for the dropdown menu
+}
+
+const { selectId, selectName, label, disabledOption, options } = Astro.props;
+---
+
+<div id="container">
+  <label for={selectId}>{label}</label>
+  <select id={selectId} name={selectName} required>
+    <option value="" disabled selected>{disabledOption}</option>
+    {
+      options.map((option) => (
+        // <option value={option.toLowerCase()}>{option}</option>
+        <option value={option}>{option}</option>
+      ))
+    }
+  </select>
+</div>
+<div class="form-group" id="languageSpecify" style="display: none;">
+  <label for="languageList">Specify Languages</label>
+  <input type="text" id="languageList" name="languageList" />
+</div>
+<script>
+  const languagesSelect = document.getElementById(
+    "languages"
+  ) as HTMLSelectElement | null;
+  const languageSpecify = document.getElementById(
+    "languageSpecify"
+  ) as HTMLElement | null;
+
+  if (languagesSelect && languageSpecify) {
+    languagesSelect.addEventListener("change", (e) => {
+      const selectElement = e.target as HTMLSelectElement; // Type assertion to HTMLSelectElement
+      if (selectElement.value !== "none") {
+        languageSpecify.style.display = "block";
+      } else {
+        languageSpecify.style.display = "none";
+      }
+    });
+  }
+</script>
+
+<style>
+  label {
+    font-weight: 500;
+  }
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+</style>

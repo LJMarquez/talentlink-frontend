@@ -1,0 +1,9 @@
+.jobs-list-container {
+  width: 100%;
+}
+
+.no-results {
+    text-align: center;
+    margin: 4rem;
+    font-size: 1.2rem;
+}

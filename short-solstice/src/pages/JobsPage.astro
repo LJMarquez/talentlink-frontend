@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import JobPageBody from "../components/JobPageBody.jsx";
+---
+
+<Layout title="Browse Jobs">
+  <NavBar />
+  <main class="main-container">
+    <div class="header">
+      <h1>Available Positions</h1>
+      <p>Find your next career opportunity</p>
+    </div>
+
+    <JobPageBody client:load />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .main-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .header p {
+    font-size: 1.125rem;
+    color: #718096;
+  }
+</style>
+
+<script>
+  localStorage.setItem("previousPage", "JobsPage");
+</script>

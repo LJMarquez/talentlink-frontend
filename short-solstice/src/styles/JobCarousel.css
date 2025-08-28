@@ -1,0 +1,113 @@
+.job-carousel {
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.navigation {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-button {
+  height: 2rem;
+  width: 2rem;
+}
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  /* transition: transform 0.5s ease, opacity 0.5s ease; */
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .job-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.job-card {
+  padding: 1.5rem;
+  border: 1px solid rgba(211, 211, 211, 0.363);
+  border-radius: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.job-card.fade-out {
+  animation: fadeOut 0.3s forwards;
+}
+
+.job-card.fade-in {
+  animation: fadeIn 0.3s forwards;
+}
+
+.job-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.job-company {
+  color: #4b5563;
+  margin-bottom: 0.25rem;
+}
+.job-details {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+.details-button {
+  width: 100%;
+  background-color: lightgray;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #8d8d8d;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

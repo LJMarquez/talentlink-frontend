@@ -1,0 +1,54 @@
+#approval-list {
+  width: 30%;
+  margin-bottom: 3vw;
+  margin-left: 4vw;
+  border-radius: 1rem;
+  border: 1px solid rgba(211, 211, 211, 0.318);
+  overflow: hidden;
+  height: 70vh;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.247);
+}
+
+#header {
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  box-shadow: 0 1px 2px  rgba(0, 0, 0, 0.247);
+  padding: 1vw;
+  font-size: 1rem;
+  font-weight: 500;
+
+}
+
+#jobs-list {
+  overflow-y: auto;
+  height: 100%;
+  padding-bottom: 20vh;
+}
+
+.job-list-item {
+  border-bottom: 1px solid lightgray;
+  padding: 0.75vw;
+  padding-left: 1vw;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.247);
+  i {
+    margin-right: .3vw;
+  }
+}
+.job-list-item:hover {
+  padding-left: 1.5vw;
+  cursor: pointer;
+}
+
+#no-pending-jobs {
+  text-align: center;
+  font-size: 1.2vw;
+  padding: 1vw;
+}
+
+@media (max-width: 600px) {
+  #approval-list {
+    width: 90%;
+    margin-left: 0;
+  }
+}

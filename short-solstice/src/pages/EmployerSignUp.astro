@@ -1,0 +1,239 @@
+---
+import FormLayout from "../components/formLayout.astro";
+import FormLabel from "../components/FormLabel.astro";
+import SelectForm from "../components/selectForm.astro";
+import RadioForm from "../components/RadioForm.astro";
+import TextareaForm from "../components/TextareaForm.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+
+const currentYear = new Date().getFullYear();
+const minYear = currentYear - 5;
+const maxYear = currentYear + 20;
+---
+
+<NavBar />
+
+<form id="sign-up" action="/submit" method="POST">
+  <slot />
+
+  <FormLayout formTitle="Employer Sign Up">
+    <FormLabel
+      labelTitle="First Name"
+      inputValue=""
+      labelFor="firstName"
+      labelType="text"
+      id="firstName"
+      name="firstName"
+    />
+
+    <FormLabel
+      labelTitle="Last Name"
+      inputValue=""
+      labelFor="lastName"
+      labelType="text"
+      id="lastName"
+      name="lastName"
+    />
+
+    <FormLabel
+      labelTitle="Company"
+      inputValue=""
+      labelFor="company"
+      labelType="text"
+      id="company"
+      name="company"
+    />
+
+    <FormLabel
+      labelTitle="Position"
+      inputValue=""
+      labelFor="position"
+      labelType="text"
+      id="position"
+      name="position"
+    />
+
+    <SelectForm
+      selectId="companySize"
+      selectName="companySize"
+      label="Company Size"
+      disabledOption="Company Size"
+      options={[
+        "1-10 employees",
+        "11-50 employees",
+        "51-200 employees",
+        "201-500 employees",
+        "501-1000 employees",
+        "1001-5000 employees",
+        "5001-10,000 employees",
+        "10,001+ employees"
+      ]}
+    />
+
+    <FormLabel
+      labelTitle="Email Address"
+      inputValue=""
+      labelFor="email"
+      labelType="email"
+      id="email"
+      name="email"
+    />
+
+    <FormLabel
+      labelTitle="Password"
+      inputValue=""
+      labelFor="password"
+      labelType="password"
+      id="password"
+      name="password"
+    />
+
+    <div class="password-toggle">
+      <label for="show-password" class="password-label">Show Password</label>
+      <input type="checkbox" id="show-password" class="password-checkbox" />
+    </div>
+
+    <button class="submit-button" type="submit">Sign Up</button>
+
+    <div class="login-link">
+      <p class="login-text">
+        Already have an account?
+        <a href="/Login" class="login-anchor">Login</a>
+      </p>
+    </div>
+
+    <div class="login-link">
+      <p class="login-text">
+        Not an employer?
+        <a href="/SignUp" class="login-anchor">Student Sign Up</a>
+      </p>
+    </div>
+
+  </FormLayout>
+</form>
+<Footer />
+
+<script>
+  import baseURL from "../baseURL";
+  const showPasswordCheckbox = document.getElementById(
+    "show-password"
+  ) as HTMLInputElement;
+  const passwordField = document.getElementById("password") as HTMLInputElement;
+
+  if (showPasswordCheckbox && passwordField) {
+    showPasswordCheckbox.addEventListener("change", () => {
+      passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
+    });
+  }
+
+  const form = document.getElementById("sign-up") as HTMLFormElement | null;
+
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent actual form submission for testing
+      const formData = new FormData(form);
+      const user = Object.fromEntries(formData.entries());
+      // console.log(user);
+      user.school = "";
+      user.graduationYear = "";
+      user.major = "";
+      user.isAdmin = "false";
+      user.isEmployer = "true";
+
+      const api = baseURL();
+      const postUser = async () => {
+        try {
+          const response = await api.post("/sign-up/TalentLinkDB/users", user);
+          if (response.status === 201) {
+            console.log("User created successfully!");
+            window.location.href = "/Login";
+          }
+        } catch (error) {
+          console.error("Error fetching jobs:", error);
+          if (error instanceof Error) {
+            if (error.message.includes("409")) {
+              alert(`User with email: ${user.email} already exists!`);
+            }
+          }
+        }
+      };
+      postUser();
+    });
+  }
+</script>
+
+<style>
+  /* General styling */
+  form {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  /* Password toggle */
+  .password-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .password-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-top: 0.5rem;
+  }
+
+  .password-checkbox {
+    height: 16px;
+    width: 16px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    accent-color: #0971e9;
+  }
+
+  /* Login link */
+  .login-link {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .login-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .login-anchor {
+    color: #0971e9;
+    text-decoration: none;
+  }
+
+  .login-anchor:hover {
+    text-decoration: underline;
+  }
+
+  /* Submit button */
+  .submit-button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #0971e9;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .submit-button:hover {
+    background-color: #085ec0;
+  }
+
+  .submit-button:focus {
+  }
+</style>

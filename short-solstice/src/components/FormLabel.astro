@@ -1,0 +1,51 @@
+---
+interface Props {
+  labelTitle: string;
+  inputValue: string;
+  labelFor: string;
+  labelType:
+    | "text"
+    | "password"
+    | "email"
+    | "number"
+    | "tel"
+    | "url"
+    | "date"
+    | "file";
+  id: string;
+  name: string;
+  pattern?: string; // Optional pattern for input validation
+  min?: number; // Optional minimum value for number input
+  max?: number; // Optional maximum value for number input
+}
+
+const { labelTitle, inputValue, labelFor, labelType, id, name, pattern, min, max } =
+  Astro.props;
+---
+
+<div id="container">
+  <label for={labelFor}>{labelTitle}</label>
+  <input
+    type={labelType}
+    id={id}
+    name={name}
+    value={inputValue}
+    placeholder={labelTitle}
+    pattern={pattern}
+    min={min}
+    max={max}
+    required
+  />
+</div>
+
+<style>
+  label {
+    font-weight: 500;
+  }
+  input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+</style>

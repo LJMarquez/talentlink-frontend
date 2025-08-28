@@ -1,0 +1,66 @@
+---
+interface Props {
+  topText: string;
+  bottomText: string;
+  buttonRight?: string;
+  buttonLeft?: string;
+}
+
+const { topText, bottomText, buttonRight, buttonLeft } = Astro.props;
+---
+
+<!-- position is relative and overflow is set to hidden with rizz -->
+<div
+  id="container-section"
+  class="relative bg-gray-600 pt-12 lg:pt-20 pb-12 md:pb-24"
+>
+  <!-- adds the background color for the first section as well as adding padding to the container of the section bottom and top -->
+  <!-- and lg:pt-20 is just 9the padding at large screens in the top and md:pb-24 is padding in the bottom at medium screens (it took me like 30 minutes to figure this out) -->
+  <div id="block-text-image" class="container bg-gray-300 mx-auto px-4 w-3/4 rounded-2xl">
+    <!-- mx-auto auto selects the margin in the x axis(right and left) -->
+    <!-- px	same as mx but stands for padding -->
+    <!-- w is just the width of the div gang -->
+    <div class="flex flex-wrap -mx-4">
+      <!-- gives the property of flex and wraps the elements for mobile devices -->
+      <div
+        id="text-side"
+        class="w-full lg:w-1/2 px-4 mb-12 md:mb-20 lg:mb-0 flex items-center"
+      >
+        <div id="text-side-container" class="w-full text-center lg:text-left lg:pl-5">
+          <h2 class="mb-3 text-4xl lg:text-5xl font-bold font-heading">
+            <p>{topText}</p>
+          </h2>
+          <div id="bottom-part-text" class="max-w-sm mx-auto lg:mx-0">
+            <p class="mb-6 text-gray-400 leading-loose">
+              {bottomText}
+            </p>
+            <div id="buttons-section">
+              <a
+                class="inline-block mb-3 lg:mb-0 lg:mr-3 w-full lg:w-auto py-2 px-6 leading-loose bg-green-600 hover:bg-green-700 text-white font-semibold rounded-l-xl rounded-t-xl transition duration-200"
+                href="#">{buttonRight}</a
+              ><a
+                class="inline-block w-full lg:w-auto py-2 px-6 leading-loose font-semibold bg-white hover:bg-gray-50 rounded-l-xl rounded-t-xl transition duration-200"
+                href="#">{buttonLeft}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- start of right side where the image is placed -->
+      <div
+        id="image-conatiner"
+        class="w-full lg:w-1/2 px-4 flex items-center justify-center"
+      >
+        <!-- at large screens the width (w-1/2) is 1/2 its size-->
+        <div id="image-place" class="relative">
+          <img
+            class="h-128 w-full max-w-lg object-cover rounded-3xl md:rounded-br-none"
+            src="https://images.unsplash.com/photo-1462826303086-329426d1aef5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

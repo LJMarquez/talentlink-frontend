@@ -1,0 +1,190 @@
+---
+import FormLayout from "../components/formLayout.astro";
+import FormLabel from "../components/FormLabel.astro";
+import SelectForm from "../components/selectForm.astro";
+import RadioForm from "../components/RadioForm.astro";
+import TextareaForm from "../components/TextareaForm.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<NavBar />
+
+<form id="log-in" action="/submit" method="POST">
+  <slot />
+
+  <FormLayout formTitle="Log In">
+    <FormLabel
+      labelTitle="Email"
+      inputValue=""
+      labelFor="email"
+      labelType="email"
+      id="email"
+      name="email"
+    />
+
+    <FormLabel
+      labelTitle="Password"
+      inputValue=""
+      labelFor="password"
+      labelType="password"
+      id="password"
+      name="password"
+    />
+
+    <div class="password-toggle">
+      <label for="show-password" class="password-label">Show Password</label>
+      <input type="checkbox" id="show-password" class="password-checkbox" />
+    </div>
+
+    <button class="submit-button" type="submit">Log In</button>
+
+    <div class="signup-link">
+      <p class="signup-text">
+        Don't have an account?
+        <a href="/SignUp" class="signup-anchor">Sign up</a>
+      </p>
+    </div>
+  </FormLayout>
+</form>
+<Footer />
+
+<script>
+  import axios from "axios";
+  import baseURL from "../baseURL";
+  const api = baseURL();
+  const previousPage = localStorage.getItem("previousPage");
+  const showPasswordCheckbox = document.getElementById(
+    "show-password"
+  ) as HTMLInputElement;
+  const passwordField = document.getElementById("password") as HTMLInputElement;
+
+  if (showPasswordCheckbox && passwordField) {
+    showPasswordCheckbox.addEventListener("change", () => {
+      passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
+    });
+  }
+
+  const form = document.getElementById("log-in") as HTMLFormElement | null;
+
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent actual form submission for testing
+      const formData = new FormData(form);
+      const user = Object.fromEntries(formData.entries());
+
+      const loginUser = async () => {
+        try {
+          const response = await api.get(
+            `/log-in/TalentLinkDB/users/${user.email}/${user.password}`,
+            user
+          );
+          if (response.status === 200) {
+            console.log("User logged in successfully!");
+            const userId = response.data;
+            console.log(userId);
+
+            localStorage.setItem("currentUserId", userId);
+            localStorage.setItem("loggedIn", "true");
+
+            setTimeout(() => {
+              if (previousPage) {
+                window.location.href = `/${previousPage}`;
+              } else {
+                window.location.href = "/";
+              }
+            }, 200);
+          }
+        } catch (error) {
+          console.error("Error logging in:", error);
+          if (axios.isAxiosError(error)) {
+            if (
+              error.response &&
+              error.response.data.error.includes("User with email")
+            ) {
+              alert(
+                `User with email ${user.email} not found or password is incorrect`
+              );
+            }
+          } else {
+            console.error("Unexpected error:", error);
+          }
+        }
+      };
+      loginUser();
+    });
+  }
+</script>
+
+<style>
+  form {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .password-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .password-label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #4a4a4a;
+    margin-top: 0.5rem;
+  }
+
+  .password-checkbox {
+    height: 16px;
+    width: 16px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    accent-color: #0971e9;
+  }
+
+  .signup-link {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .signup-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .signup-anchor {
+    color: #0971e9;
+    text-decoration: none;
+  }
+
+  .signup-anchor:hover {
+    text-decoration: underline;
+  }
+
+  .submit-button {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #0971e9;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .submit-button:hover {
+    background-color: #085ec0;
+  }
+
+  .submit-button:focus {
+    outline: 2px solid #085ec0;
+    outline-offset: 2px;
+  }
+</style>

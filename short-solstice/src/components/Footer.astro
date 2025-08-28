@@ -1,0 +1,245 @@
+---
+const links = [
+  { name: "Home", href: "/" },
+  { name: "Jobs", href: "/JobsPage" },
+  { name: "About", href: "/About" },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+      <div class="links">
+        <h3 class="title">Quick Links</h3>
+        <nav class="nav">
+          {
+            links.map((link) => (
+              <a href={link.href} class="link">
+                {link.name}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <div class="subscribe">
+        <div class="subscribe-box">
+          <h3 class="title" id="stay-connected">Stay Connected</h3>
+          <p class="description">
+            Subscribe to receive updates about new job opportunities!
+          </p>
+          <form class="subscribe-form">
+            <input
+              type="email"
+              placeholder="Enter your school email"
+              class="subscribe-input"
+            />
+            <button class="subscribe-button"> Subscribe </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} TalentLink. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import baseURL from "../baseURL";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const api = baseURL();
+    let user;
+
+    const userId = localStorage.getItem("currentUserId");
+
+    const addHoverEffect = (link: HTMLAnchorElement) => {
+      link.style.transition = "all 0.3s ease";
+      link.addEventListener("mouseover", () => {
+        link.style.color = "#0971e9";
+        link.style.paddingLeft = "0.5vw";
+      });
+      link.addEventListener("mouseout", () => {
+        link.style.color = "#f7fafc";
+        link.style.paddingLeft = "0";
+      });
+    };
+
+    const fetchUser = async () => {
+      try {
+        const response = await api.get(
+          `/retrieve-user/TalentLinkDB/users/${userId}`
+        );
+        if (response.status === 200) {
+          user = response.data;
+
+          const navLinks = document.querySelector(".nav");
+
+          if (user.isAdmin && navLinks) {
+            const adminLink = document.createElement("a");
+            adminLink.href = "/AdminPage";
+            adminLink.className = "link";
+            adminLink.textContent = "Admin Hub";
+            navLinks.appendChild(adminLink);
+            addHoverEffect(adminLink);
+          }
+
+          if (user.isEmployer && navLinks) {
+            const postJobLink = document.createElement("a");
+            postJobLink.href = "/JobUpload";
+            postJobLink.className = "link";
+            postJobLink.textContent = "Post a Job";
+            navLinks.appendChild(postJobLink);
+            addHoverEffect(postJobLink);
+          }
+
+          if (navLinks) {
+            const loginLink = document.createElement("a");
+            loginLink.href = "/Login";
+            loginLink.className = "link login";
+            loginLink.textContent = "Log In";
+            navLinks.appendChild(loginLink);
+            addHoverEffect(loginLink);
+          }
+
+          if (localStorage.getItem("loggedIn") === "true") {
+            const loginLink = document.querySelector(".login");
+            if (loginLink) {
+              const anchor = loginLink as HTMLAnchorElement;
+              anchor.href = "/Profile";
+              anchor.textContent = "Profile";
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      }
+    };
+    if (userId !== null) {
+      fetchUser();
+    } else {
+      const navLinks = document.querySelector(".nav");
+      const loginLink = document.createElement("a");
+      loginLink.href = "/Login";
+      loginLink.className = "link";
+      loginLink.textContent = "Log In";
+      const loginLinkMobile = document.createElement("a");
+      loginLinkMobile.href = "/Login";
+      loginLinkMobile.className =
+        "block text-gray-800 hover:text-blue-500 px-3 py-2 rounded-md text-base font-medium login";
+      loginLinkMobile.textContent = "Log In";
+      if (navLinks) {
+        navLinks.appendChild(loginLink);
+      }
+      addHoverEffect(loginLink);
+
+      if (localStorage.getItem("loggedIn") === "true") {
+        // const loginLink = document.querySelectorAll(".login") as HTMLAnchorElement;
+        const loginLinks = document.querySelectorAll(".login");
+        if (loginLinks) {
+          loginLinks.forEach((loginLink) => {
+            const anchor = loginLink as HTMLAnchorElement;
+            anchor.href = "/Profile";
+            anchor.textContent = "Profile";
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  .footer {
+    background-color: #1a202c;
+    color: #f7fafc;
+    padding: 2rem;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .links,
+  .subscribe {
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    
+  }
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+  }
+  .link {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+  }
+  .link:hover {
+    color: #0971e9;
+    padding-left: 0.5vw;
+  }
+  .subscribe-box {
+    background-color: #2d3748;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  flex-wrap: wrap; /* Ensures items wrap to the next line */
+  gap: 10px; /* Adds spacing between items */
+  width: 100%;
+  padding: 9px;
+  }
+  .description {
+    color: #a0aec0;
+    margin-bottom: 1rem;
+  }
+  .subscribe-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .subscribe-input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    background-color: #4a5568;
+    color: #ffffff;
+    border: none;
+    outline: none;
+  }
+  .subscribe-input::placeholder {
+    color: #a0aec0;
+  }
+  .subscribe-input:focus {
+    outline: 2px solid #0971e9;
+  }
+  .subscribe-button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+  }
+  .subscribe-button:hover {
+    background-color: #0056b3;
+  }
+  .footer-bottom {
+    border-top: 1px solid #2d3748;
+    margin-top: 0.5rem;
+    padding-top: 2rem;
+    text-align: center;
+    color: #a0aec0;
+  }
+
+</style>

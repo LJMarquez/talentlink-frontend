@@ -1,0 +1,22 @@
+---
+import NavBar from '../components/NavBar.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Identity from '../components/Identity.astro';
+import JobCarousel from '../components/JobCarousel';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="TalentLink Home Page">
+  <NavBar />
+  <main class="min-h-screen flex flex-col">
+    <Header />
+    <Identity />
+    <JobCarousel client:load />
+    <Footer />
+  </main>
+</Layout>
+
+<script>
+  localStorage.setItem('previousPage', '');
+</script>

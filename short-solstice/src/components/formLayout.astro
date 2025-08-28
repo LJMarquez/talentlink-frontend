@@ -1,0 +1,67 @@
+---
+import logo from "../../public/assets/talentlinklogo.svg";
+interface Props {
+  formTitle: string;
+}
+
+const { formTitle } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{formTitle}</title>
+    <link rel="stylesheet" href="/src/styles/formLayout.css" />
+    <link rel="icon" href={logo.src} />
+  </head>
+  <body class="min-h-screen">
+    <div class="form-container">
+      <h2 class="form-header">{formTitle}</h2>
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  .form-header {
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  const phone = document.getElementById("phone") as HTMLInputElement | null;
+
+  if (phone) {
+    phone.addEventListener("input", function (e) {
+      const inputElement = e.target as HTMLInputElement; // Type assertion to HTMLInputElement
+      if (inputElement) {
+        let value = inputElement.value.replace(/\D/g, ""); // Remove non-digit characters
+        if (value.length > 10) {
+          value = value.slice(0, 10); // Restrict to 10 digits
+        }
+        if (value.length > 3 && value.length <= 6) {
+          value = value.replace(/(\d{3})(\d{1,})/, "$1-$2"); // Add dash after the first 3 digits
+        } else if (value.length > 6) {
+          value = value.replace(/(\d{3})(\d{3})(\d{1,})/, "$1-$2-$3"); // Add dash after the second 3 digits
+        }
+        inputElement.value = value;
+      }
+    });
+  }
+
+  //   const form = document.getElementById('myForm');
+
+  //   form.addEventListener('submit', (event) => {
+  //     event.preventDefault(); // Prevent actual form submission for testing
+  //     const formData = new FormData(form);
+
+  //     // Log each form field
+  //     for (const [key, value] of formData.entries()) {
+  //       console.log(`${key}: ${value}`);
+  //     }
+
+  //     alert("Form submitted successfully!");
+  //   });
+</script>
