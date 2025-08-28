@@ -1,6 +1,6 @@
 ---
 import logo from "../../public/assets/talentlinklogo.svg";
-import '../styles/formLayout.css';
+import "../styles/formLayout.css";
 interface Props {
   formTitle: string;
 }
@@ -26,8 +26,182 @@ const { formTitle } = Astro.props;
 </html>
 
 <style>
+  body {
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
   .form-header {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 600;
+  }
+  label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .submit-button {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    border: 2px solid #007bff; /* Blue border */
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s ease; /* Animation for color change and scale */
+  }
+
+  .submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+  }
+
+  /* button {
+    background-color: #007bff;
+    color: white;
+   
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  button:hover {
+    background-color: #0056b3;
+  } */
+
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 1.5rem;
+    }
+    button {
+      width: 100%;
+    }
+  }
+
+  #container {
+    display: block;
+    margin-bottom: 1rem; /* Adds spacing between elements */
+  }
+
+  #languageSpecify {
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* Adds spacing between label and select */
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* Adds spacing between label and select */
+  }
+  select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  /* Specific styles for the radio component */
+  .radio-group {
+    display: flex;
+    flex-direction: column; /* Stack the groups vertically */
+    margin-bottom: 1rem;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .radio-option input[type="radio"] {
+    margin-right: 0.5rem; /* Space between radio button and label */
+  }
+
+  /* Optional: Styling for the labels */
+  .radio-option label {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .radio-option {
+      flex-direction: row; /* Display radio buttons and labels inline on smaller screens */
+    }
+  }
+
+  /* Specific styling for the radio buttons and labels */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .radio-group label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .radio-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+
+  .radio-item input {
+    margin-right: 0.5rem; /* Space between the radio button and label */
   }
 </style>
 
